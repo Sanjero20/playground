@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="validate.js" defer></script>
+  </head>
+  <body>
+    <form action="">
+      <fieldset>
+        <label for="firstName">First Name</label>
+        <div class="inputs">
+          <input type="text" id="firstName" name="firstName" />
+          <p class="error fname-msg"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="lastName">Last Name</label>
+        <div class="inputs">
+          <input type="text" id="lastName" name="lastName" />
+          <p class="error lname-msg"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="email">Email Adress</label>
+        <div class="inputs">
+          <input type="email" name="email" id="email" />
+          <p class="error email-msg"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="password">Password</label>
+        <div class="inputs">
+          <input type="password" name="" id="password" />
+          <p class="error pass-msg"></p>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <label for="confirmPassword">Confirm Password</label>
+        <div class="inputs">
+          <input type="password" name="confirmPassword" id="confirmPassword" />
+          <p class="error cpass-msg"></p>
+        </div>
+      </fieldset>
+    </form>
+  </body>
+</html>
