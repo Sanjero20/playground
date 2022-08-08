@@ -5,6 +5,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Form Validation</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
     <script src="validate.js" defer></script>
   </head>
@@ -19,8 +23,10 @@
             name="userName"
             placeholder="sanjero"
           />
-          <p class="error user-msg"></p>
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
+        <p class="error user-msg"></p>
       </fieldset>
 
       <fieldset>
@@ -32,24 +38,30 @@
             id="email"
             placeholder="example@gmail.com"
           />
-          <p class="error email-msg"></p>
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
+        <p class="error email-msg"></p>
       </fieldset>
 
       <fieldset>
         <label for="password">Password</label>
         <div class="inputs">
           <input type="password" name="password" id="password" />
-          <p class="error pass-msg"></p>
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
+        <p class="error pass-msg"></p>
       </fieldset>
 
       <fieldset>
         <label for="confirmPassword">Confirm Password</label>
         <div class="inputs">
           <input type="password" name="confirmPassword" id="confirmPassword" />
-          <p class="error cpass-msg"></p>
+          <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          <i class="fa fa-times-circle-o" aria-hidden="true"></i>
         </div>
+        <p class="error cpass-msg"></p>
       </fieldset>
 
       <button class="submit-btn">SUBMIT</button>

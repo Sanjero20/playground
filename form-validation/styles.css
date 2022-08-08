@@ -1,5 +1,5 @@
 :root {
-  --error-color: rgb(255, 26, 26);
+  --error-color: #ff3636;
   --valid-color: #36ff51;
 }
 
@@ -36,6 +36,7 @@ form fieldset {
 }
 
 form .inputs {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -61,6 +62,27 @@ input.invalid {
 
 input.valid {
   border: 1px solid var(--valid-color);
+}
+
+i {
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fa-times-circle-o,
+.fa-check-circle-o {
+  display: none;
+  font-size: 1.25em;
+}
+
+.fa-times-circle-o {
+  color: var(--error-color);
+}
+
+.fa-check-circle-o {
+  color: var(--valid-color);
 }
 
 .error {
