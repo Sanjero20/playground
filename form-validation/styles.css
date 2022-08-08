@@ -85,6 +85,11 @@ i {
   color: var(--valid-color);
 }
 
+.fa-check-circle-o.show,
+.fa-times-circle-o.show {
+  display: block;
+}
+
 .error {
   width: 100%;
   font-size: 0.8em;

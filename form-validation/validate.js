@@ -16,17 +16,26 @@ const emailError = document.querySelector('.email-msg');
 const passwordError = document.querySelector('.password-msg');
 const cPasswordError = document.querySelector('.cpass-msg');
 
+// form icon erros
+const errorIcons = document.querySelectorAll('.fa-times-circle-o');
+const checkIcons = document.querySelectorAll('.fa-check-circle-o');
+
+console.log(errorIcons, checkIcons);
+
+// Event Listeners
 form.addEventListener('submit', (e) => {
   e.preventDefault();
 });
 
-// Event listener for remove validation if empty
+// Remove validation if empty
 formInputs.forEach((input, index) => {
   input.addEventListener('focusout', (e) => {
     if (input.value === '') {
       removeValidityClass(input);
       errorObject = formErrors[index];
       setErrorMsg(errorObject, '');
+      hideIcon(errorIcons[index]);
+      hideIcon(checkIcons[index]);
     }
   });
 });
@@ -35,19 +44,23 @@ userName.addEventListener('input', (e) => {
   if (userName.value.trim() === '') {
     isInvalid(userName);
     setErrorMsg(userNameError, 'Must not be empty');
+    showIcon('error', 0);
   } else {
     isValid(userName);
     setErrorMsg(userNameError, '');
+    showIcon('valid', 0);
   }
 });
 
 email.addEventListener('input', (e) => {
   if (email.validity.typeMismatch || email.value === '') {
     isInvalid(email);
-    setErrorMsg(emailError, 'Not a valid email address');
+    setErrorMsg(emailError, 'Must be a valid email address');
+    showIcon('error', 1);
   } else {
     isValid(email);
     setErrorMsg(emailError, '');
+    showIcon('valid', 1);
   }
 });
 
@@ -71,4 +84,19 @@ function isValid(input) {
 
 function setErrorMsg(input, message) {
   input.textContent = message;
+}
+
+// icon functions
+function showIcon(type, index) {
+  if (type === 'error') {
+    errorIcons[index].classList.add('show');
+    checkIcons[index].classList.remove('show');
+  } else if (type === 'valid') {
+    errorIcons[index].classList.remove('show');
+    checkIcons[index].classList.add('show');
+  }
+}
+
+function hideIcon(icon) {
+  icon.classList.remove('show');
 }
