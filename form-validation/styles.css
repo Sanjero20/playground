@@ -7,28 +7,27 @@
 
 body {
   height: 100vh;
-  background-color: aliceblue;
+  background-color: black;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 form {
-  width: 375px;
+  width: 300px;
   display: flex;
   flex-direction: column;
   gap: 1em;
-  padding: 2em;
-  background-color: grey;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding: 1.5em;
+  background-color: white;
   border-radius: 10px;
 }
 
 form fieldset {
   display: flex;
+  flex-direction: column;
+  gap: 5px;
   border: 1px;
-  justify-content: space-between;
-  align-items: center;
 }
 
 form .inputs {
@@ -43,6 +42,21 @@ form p {
 }
 
 input {
-  width: 200px;
-  padding: 0.25em;
+  padding: 0.5em;
+}
+
+.submit-btn {
+  background-color: #1d36f7;
+  margin: 0 auto;
+  width: 100px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px;
+  transition: transform 100ms ease-in-out;
+  color: white;
+  font-weight: 700;
+}
+
+.submit-btn:active {
+  transform: scale(0.9);
 }

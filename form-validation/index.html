@@ -9,25 +9,17 @@
     <script src="validate.js" defer></script>
   </head>
   <body>
-    <form action="">
+    <form action="" id="myForm">
       <fieldset>
-        <label for="firstName">First Name</label>
+        <label for="userName">Username</label>
         <div class="inputs">
-          <input type="text" id="firstName" name="firstName" />
+          <input type="text" id="userName" name="userName" />
           <p class="error fname-msg"></p>
         </div>
       </fieldset>
 
       <fieldset>
-        <label for="lastName">Last Name</label>
-        <div class="inputs">
-          <input type="text" id="lastName" name="lastName" />
-          <p class="error lname-msg"></p>
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <label for="email">Email Adress</label>
+        <label for="email">Email Address</label>
         <div class="inputs">
           <input type="email" name="email" id="email" />
           <p class="error email-msg"></p>
@@ -49,6 +41,8 @@
           <p class="error cpass-msg"></p>
         </div>
       </fieldset>
+
+      <button class="submit-btn">SUBMIT</button>
     </form>
   </body>
 </html>
