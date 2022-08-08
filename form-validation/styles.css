@@ -1,3 +1,8 @@
+:root {
+  --error-color: rgb(255, 26, 26);
+  --valid-color: #36ff51;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -43,6 +48,25 @@ form p {
 
 input {
   padding: 0.5em;
+  border: 1px solid black;
+}
+
+input:focus {
+  outline: 1px;
+}
+
+input.invalid {
+  border: 1px solid var(--error-color);
+}
+
+input.valid {
+  border: 1px solid var(--valid-color);
+}
+
+.error {
+  width: 100%;
+  font-size: 0.8em;
+  color: var(--error-color);
 }
 
 .submit-btn {
