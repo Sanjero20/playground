@@ -13,14 +13,12 @@ const confirmPassword = document.getElementById('confirmPassword');
 // form errors
 const userNameError = document.querySelector('.user-msg');
 const emailError = document.querySelector('.email-msg');
-const passwordError = document.querySelector('.password-msg');
+const passwordError = document.querySelector('.pass-msg');
 const cPasswordError = document.querySelector('.cpass-msg');
 
 // form icon erros
 const errorIcons = document.querySelectorAll('.fa-times-circle-o');
 const checkIcons = document.querySelectorAll('.fa-check-circle-o');
-
-console.log(errorIcons, checkIcons);
 
 // Event Listeners
 form.addEventListener('submit', (e) => {
@@ -65,6 +63,64 @@ email.addEventListener('input', (e) => {
 });
 
 // password validaton
+password.addEventListener('input', (e) => {
+  let passwordValue = password.value;
+  let errorMsg = '';
+
+  // If password is not empty
+  if (passwordValue) {
+    // Lenght validation
+    if (passwordValue.length < 8) {
+      errorMsg += 'Must contain atleast 8 characters\r\n';
+    } else {
+      errorMsg += '';
+    }
+
+    // UpperCase validation
+    let uppercase = '(?=.*[A-Z])';
+    if (checkPattern(passwordValue, uppercase) == false) {
+      errorMsg += 'Must contain atleast 1 uppercase letter\r\n';
+    } else {
+      errorMsg += '';
+    }
+
+    // LowerCase validation
+    let lowercase = '(?=.*[a-z])';
+    if (checkPattern(passwordValue, lowercase) == false) {
+      errorMsg += 'Must contain atleast 1 lowercase letter\r\n';
+    } else {
+      errorMsg += '';
+    }
+
+    // Number validation
+    let numberRegex = '(?=.*[0-9])';
+    if (checkPattern(passwordValue, numberRegex) == false) {
+      errorMsg += 'Must contain atleast one number\r\n';
+    } else {
+      errorMsg += '';
+    }
+
+    // Display all errors
+    passwordError.setAttribute('style', 'white-space: pre');
+    isInvalid(password);
+    setErrorMsg(passwordError, errorMsg);
+    showIcon('error', 2);
+
+    // If no errors display valid
+    if (passwordValue != '' && passwordError.textContent === '') {
+      // No error and is valid
+      showIcon('valid', 2);
+      isValid(password);
+      setErrorMsg(passwordError, '');
+    }
+  }
+  // If no password input
+  else {
+    showIcon('error', 2);
+    isInvalid(password);
+    setErrorMsg(passwordError, 'Must not be empty');
+  }
+});
 
 // functionalities
 function removeValidityClass(input) {
@@ -99,4 +155,9 @@ function showIcon(type, index) {
 
 function hideIcon(icon) {
   icon.classList.remove('show');
+}
+
+function checkPattern(value, pattern) {
+  pattern = new RegExp(pattern);
+  return pattern.test(value);
 }
