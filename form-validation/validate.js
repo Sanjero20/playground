@@ -23,9 +23,27 @@ const checkIcons = document.querySelectorAll('.fa-check-circle-o');
 // Event Listeners
 form.addEventListener('submit', (e) => {
   e.preventDefault();
+  const inputsForms = [...formInputs];
+  const allInputsValid = inputsForms.every((input) =>
+    input.classList.contains('valid')
+  );
+
+  if (allInputsValid) {
+    let user = createUser(userName.value.trim(), email.value, password.value);
+    resetForm();
+
+    console.log(user);
+  } else {
+    // show all errors
+    validateUsername();
+    validateEmail();
+    validatePassword();
+    checkPassword();
+  }
 });
 
-// Remove validation if empty
+// If input is empty and out of focus,
+// Remove validation indicators
 formInputs.forEach((input, index) => {
   input.addEventListener('focusout', (e) => {
     if (input.value === '') {
@@ -39,6 +57,80 @@ formInputs.forEach((input, index) => {
 });
 
 userName.addEventListener('input', (e) => {
+  validateUsername();
+});
+
+email.addEventListener('input', (e) => {
+  validateEmail();
+});
+
+password.addEventListener('input', (e) => {
+  validatePassword();
+});
+
+confirmPassword.addEventListener('input', (e) => {
+  checkPassword();
+});
+
+// form functions
+function removeValidityClass(input) {
+  input.classList.remove('valid');
+  input.classList.remove('invalid');
+}
+
+function isInvalid(input) {
+  input.classList.remove('valid');
+  input.classList.add('invalid');
+}
+
+function isValid(input) {
+  input.classList.remove('invalid');
+  input.classList.add('valid');
+}
+
+function setErrorMsg(input, message) {
+  input.textContent = message;
+}
+
+function resetForm() {
+  formInputs.forEach((input, index) => {
+    input.value = '';
+    removeValidityClass(input);
+    hideIcon(errorIcons[index]);
+    hideIcon(checkIcons[index]);
+  });
+}
+
+function createUser(username, email, password) {
+  return {
+    username: username,
+    email: email,
+    password: password,
+  };
+}
+
+// icon functions
+function showIcon(type, index) {
+  if (type === 'error') {
+    errorIcons[index].classList.add('show');
+    checkIcons[index].classList.remove('show');
+  } else if (type === 'valid') {
+    errorIcons[index].classList.remove('show');
+    checkIcons[index].classList.add('show');
+  }
+}
+
+function hideIcon(icon) {
+  icon.classList.remove('show');
+}
+
+function checkPattern(value, pattern) {
+  pattern = new RegExp(pattern);
+  return pattern.test(value);
+}
+
+// validation functions
+function validateUsername() {
   if (userName.value.trim() === '') {
     isInvalid(userName);
     setErrorMsg(userNameError, 'Must not be empty');
@@ -48,10 +140,14 @@ userName.addEventListener('input', (e) => {
     setErrorMsg(userNameError, '');
     showIcon('valid', 0);
   }
-});
+}
 
-email.addEventListener('input', (e) => {
-  if (email.validity.typeMismatch || email.value === '') {
+function validateEmail() {
+  if (email.value === '') {
+    isInvalid(email);
+    setErrorMsg(emailError, 'Must not be empty');
+    showIcon('error', 1);
+  } else if (email.validity.typeMismatch) {
     isInvalid(email);
     setErrorMsg(emailError, 'Must be a valid email address');
     showIcon('error', 1);
@@ -60,10 +156,9 @@ email.addEventListener('input', (e) => {
     setErrorMsg(emailError, '');
     showIcon('valid', 1);
   }
-});
+}
 
-// password validaton
-password.addEventListener('input', (e) => {
+function validatePassword() {
   let passwordValue = password.value;
   let errorMsg = '';
 
@@ -120,44 +215,20 @@ password.addEventListener('input', (e) => {
     isInvalid(password);
     setErrorMsg(passwordError, 'Must not be empty');
   }
-});
-
-// functionalities
-function removeValidityClass(input) {
-  input.classList.remove('valid');
-  input.classList.remove('invalid');
 }
 
-function isInvalid(input) {
-  input.classList.remove('valid');
-  input.classList.add('invalid');
-}
-
-function isValid(input) {
-  input.classList.remove('invalid');
-  input.classList.add('valid');
-}
-
-function setErrorMsg(input, message) {
-  input.textContent = message;
-}
-
-// icon functions
-function showIcon(type, index) {
-  if (type === 'error') {
-    errorIcons[index].classList.add('show');
-    checkIcons[index].classList.remove('show');
-  } else if (type === 'valid') {
-    errorIcons[index].classList.remove('show');
-    checkIcons[index].classList.add('show');
+function checkPassword() {
+  if (confirmPassword.value === '') {
+    showIcon('error', 3);
+    isInvalid(confirmPassword);
+    setErrorMsg(cPasswordError, 'Must not be empty');
+  } else if (confirmPassword.value === password.value) {
+    showIcon('valid', 3);
+    isValid(confirmPassword);
+    setErrorMsg(cPasswordError, '');
+  } else {
+    showIcon('error', 3);
+    isInvalid(confirmPassword);
+    setErrorMsg(cPasswordError, 'Password do not match');
   }
-}
-
-function hideIcon(icon) {
-  icon.classList.remove('show');
-}
-
-function checkPattern(value, pattern) {
-  pattern = new RegExp(pattern);
-  return pattern.test(value);
 }
