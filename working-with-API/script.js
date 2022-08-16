@@ -5,8 +5,8 @@ const img = document.querySelector('img');
 
 const btn = document.querySelector('#btn');
 const error = document.querySelector('.error');
-btn.addEventListener('click', () => {
-  error.textContent = '';
+
+function generate() {
   fetch(url, {
     mode: 'cors',
   })
@@ -22,4 +22,10 @@ btn.addEventListener('click', () => {
       console.log(error);
       error.textContent = error;
     });
+}
+
+btn.addEventListener('click', () => {
+  error.textContent = '';
+  img.src = '';
+  generate();
 });
