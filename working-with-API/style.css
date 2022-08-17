@@ -8,27 +8,46 @@ body {
   background-color: aliceblue;
   display: flex;
   justify-content: center;
-}
-
-.center {
-  margin-top: 3em;
-  height: 300px;
-  background-color: white;
-  width: 300px;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
+  flex-direction: column;
 }
 
-.center img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
+.container {
+  margin-top: 3em;
+  height: 800px;
+  width: min(1100px, 75%);
+  background-color: white;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 50px;
+  overflow-x: hidden;
+}
+
+.container img {
+  height: 250px;
+  width: auto;
 }
 
 .error {
   margin-top: 3em;
   color: red;
+}
+
+form {
+  margin-top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+
+#searchBar {
+  width: 300px;
+  padding: 10px;
+}
+
+#searchBtn {
+  padding: 10px 15px;
+  height: 40px;
 }
