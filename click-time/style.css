@@ -1,0 +1,27 @@
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  border: 1px solid black;
+  border-radius: 20px;
+}
+
+.box.pressed {
+  background-color: green;
+}
+
+.output {
+  margin-top: 10px;
+  width: 200px;
+  height: 50px;
+  border: 1px solid black;
+  padding: 0.5em;
+}
