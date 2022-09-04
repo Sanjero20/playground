@@ -1,22 +1,36 @@
 let isPressed = false;
 let pressedTime = 0;
 let prevClickTime = microtime(true);
+let randomValue = 0;
+let delay = 1; // seconds it will take to add space in the output
 
 document.addEventListener('keydown', e => {
-  if (isPressed == true) return;
+  if (isPressed == true) return; // prevent multiple clicks if hold
   if (e.key === ' ') {
     console.clear();
     pressedTime = microtime(true);
     box.classList.add('pressed');
-    calculateTime();
 
+    calculateInterval();
     isPressed = true;
   }
 });
 
 document.addEventListener('keyup', e => {
   if (e.key === ' ') {
-    calculateTimePressed();
+    const time = calculateTimePressed();
+
+    if (randomValue > delay && output.value != '') {
+      console.log(randomValue);
+      output.value += ' ';
+    }
+
+    if (time < 0.1) {
+      output.value += '.';
+    } else {
+      output.value += '-';
+    }
+
     box.classList.remove('pressed');
     isPressed = false;
   }
@@ -29,14 +43,14 @@ function microtime(get_as_float) {
   return get_as_float ? now : `${time} s`;
 }
 
-function calculateTime() {
+function calculateInterval() {
   const clickTime = microtime(true);
   const clickInterval = clickTime - prevClickTime;
   console.log(`Click Interval: ${clickInterval}`);
 
   // new clicktime will be previous click time
   prevClickTime = clickTime;
-  return clickInterval;
+  randomValue = clickInterval;
 }
 
 function calculateTimePressed() {
@@ -47,3 +61,9 @@ function calculateTimePressed() {
 }
 
 const box = document.querySelector('.box');
+const output = document.querySelector('.output');
+const btn = document.querySelector('.reset');
+
+btn.addEventListener('click', e => {
+  output.value = '';
+});
