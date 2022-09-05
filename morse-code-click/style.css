@@ -4,6 +4,7 @@
 }
 
 body {
+  background-color: gray;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -30,6 +31,8 @@ body {
   border: 1px solid black;
   padding: 0.5em;
   resize: none;
+  color: black;
+  background-color: white;
 }
 
 .reset {
