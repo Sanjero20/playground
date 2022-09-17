@@ -49,6 +49,7 @@ form p {
 
 input {
   padding: 0.5em;
+  padding-right: 2.5em;
   border: 1px solid black;
 }
 
